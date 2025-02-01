@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 const cron = require("node-cron");
 const { reconcilePayments } = require("./controllers/payoutController");
 
-
 const app = express();
 const dotenv = require("dotenv");
 
@@ -17,11 +16,7 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "http://localhost:3001",
-      "http://localhost:3000",
-    ],
+    origin: ["https://poolbeferest.com"],
     credentials: true,
   })
 );
