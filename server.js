@@ -49,7 +49,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/payments", paymentRoutes);
 app.use("/api/accounts", accountRoutes);
 app.use("/api/payouts", payoutRoutes);
-
+app.get("/", (req, res) => res.send("My backend"));
 // Run reconciliation every hour
 cron.schedule("0 * * * *", () => {
   console.log("Running payment reconciliation...");
