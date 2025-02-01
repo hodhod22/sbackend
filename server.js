@@ -10,10 +10,7 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
-// Import your user model
-const User = require("./models/User");
 
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 app.use(
   cors({
@@ -27,13 +24,7 @@ app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URI);
 
-// Serve static files from the React app
-app.use(express.static(path.join(__dirname, "../dist")));
 
-// Handle React routing, return all requests to React app
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../dist/index.html"));
-});
 // Routes: auth, payments, accounts
 const authRoutes = require("./routes/auth");
 const paymentRoutes = require("./routes/payment");
