@@ -17,8 +17,10 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 app.use(
   cors({
-    origin: ["https://poolbeferest.com"],
-    credentials: true,
+    origin: "https://poolbeferest.com", // Allow only your frontend
+    credentials: true, // Allow cookies if needed
+    methods: ["GET", "POST", "PUT", "DELETE"], // Allowed methods
+    allowedHeaders: ["Content-Type", "Authorization"], // Allowed headers
   })
 );
 app.use(express.json());
