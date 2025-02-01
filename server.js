@@ -17,7 +17,7 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 app.use(
   cors({
-    origin: ["https://poolbeferest.com"],
+    origin: ["https://vercelone-pi.vercel.app"],
     credentials: true,
   })
 );
