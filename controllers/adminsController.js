@@ -6,8 +6,8 @@ exports.getPendingPayments = async (req, res) => {
     const users = await User.find({}).select("name email pendingPayments");
 
     // Extract pending payments
-    const pendingPayments = users.flatMap((user) =>
-      user.pendingPayments.map((payment) => ({
+    const pendingPayments = users?.flatMap((user) =>
+      user.pendingPayments?.map((payment) => ({
         userId: user._id,
         userName: user.name,
         userEmail: user.email,

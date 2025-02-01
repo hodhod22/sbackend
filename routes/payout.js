@@ -81,7 +81,7 @@ router.post("/payout/verify", async (req, res) => {
       });
       if (!user) return res.status(404).json({ message: "User not found" });
 
-      user.withdrawalHistory = user.withdrawalHistory.map((w) =>
+      user.withdrawalHistory = user.withdrawalHistory?.map((w) =>
         w.authority === authority ? { ...w, status: "approved" } : w
       );
       await user.save();
