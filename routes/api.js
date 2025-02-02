@@ -3,8 +3,8 @@ const express = require("express");
 const {
   requestPayout,
   verifyPayout,
- 
 } = require("../controllers/payoutController");
+const { createPayout } = require("../controllers/stripePayoutController");
 const { verifyUserPayments } = require("../controllers/paymentController");
 const { getPendingPayments } = require("../controllers/adminsController");
 const { getWithdrawalHistory } = require("../controllers/userController");
@@ -25,6 +25,8 @@ router.post("/verify-payments", async (req, res) => {
 router.get("/admin/pending-payments", getPendingPayments);
 
 // User routes
+
+router.post("/stripe/create-payout", createPayout);
 router.get("/user/withdrawal-history/:userId", getWithdrawalHistory);
 
 router.post("/request-payout", requestPayout);

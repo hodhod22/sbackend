@@ -1,6 +1,5 @@
 const express = require("express");
 const cors = require("cors");
-const path = require("path");
 const mongoose = require("mongoose");
 const cron = require("node-cron");
 const { reconcilePayments } = require("./controllers/payoutController");
@@ -21,7 +20,9 @@ app.use(
   })
 );
 app.use(express.json());
-
+app.use(express.urlencoded({ extended: true }));
+// Enable trust proxy for cookies to work on deployment
+app.set("trust proxy", 1);
 mongoose.connect(process.env.MONGO_URI);
 
 
