@@ -18,7 +18,7 @@ const generateAccountNumber = async () => {
     ).toString();
 
     // Check if account number already exists
-    const existingUser = await User.findOne({ accountNumber });
+    const existingUser = await User.findOne({ accountNumber: 1 });
     exists = !!existingUser; // If found, loop continues
   }
 
@@ -34,7 +34,7 @@ router.post("/register", async (req, res) => {
     const { name, email, password } = req.body;
 
     // Check if user email already exists
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({ email: 1 });
     if (existingUser) {
       return res.status(400).json({ message: "Email already exists" });
     }
@@ -95,7 +95,7 @@ router.get("/users", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email: 1 });
 
     if (!user) return res.status(404).json({ message: "User not found" });
 
